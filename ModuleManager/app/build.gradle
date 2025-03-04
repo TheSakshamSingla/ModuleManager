@@ -94,3 +94,20 @@ dependencies {
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_version"
 }
+signingConfigs {
+        release {
+            storeFile file("../modulemanager.keystore")
+            storePassword System.getenv("KEY_STORE_PASSWORD") ?: "debug"
+            keyAlias System.getenv("KEY_ALIAS") ?: "debug"
+            keyPassword System.getenv("KEY_PASSWORD") ?: "debug"
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
+}
