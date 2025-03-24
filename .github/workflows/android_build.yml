@@ -1,6 +1,7 @@
 name: Android Build & Release
 
 on:
+  workflow_dispatch:  # 👈 Add this for manual trigger
   push:
     branches: [ main ]
     tags:
